@@ -10,11 +10,13 @@ import (
 
 //AppList struct
 type AppList struct {
-	Integrations []struct {
-		Target string `json:"Target"`
-		ID     string `json:"IntegrationID"`
-	} `json:"Integrations"`
-	Application string `json:"Application"`
+	Applications []struct {
+		Application  string `json:"application"`
+		Integrations []struct {
+			Target        string `json:"target"`
+			IntegrationID string `json:"integration_id"`
+		} `json:"integrations"`
+	} `json:"applications"`
 }
 
 //LoadMain func
@@ -39,11 +41,14 @@ func HandleRequests(w http.ResponseWriter, r *http.Request) {
 	appList := AppList{}
 	fmt.Println(appList)
 	file, err := ioutil.ReadFile("static/node.json")
+
 	if err != nil {
 		log.Println(err.Error())
 	}
 	json.Unmarshal(file, &appList)
-	//w.Write(appList)
+
+	m, _ := json.Marshal(appList)
+	w.Write(m)
 }
 
 func main() {
