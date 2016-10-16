@@ -1,0 +1,34 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="nav-pill">
+  <template>
+    <li></li>
+  </template>
+</dom-module>
+
+<script>
+    Polymer({
+      is: "nav-pill",
+      properties: {
+        isHidden: {
+          type: Boolean,
+          value: false
+        }
+      },
+      _setDisplay: function(value){
+        console.log("test")
+        this.isHidden = value;
+      },
+      observer: '_navDisplayChange',
+      _navDisplayChange: funcion(){
+        console.log("Reached here")
+        if (this.isHidden == true){
+          this.toggleClass("display", "inline");
+        } else {
+          this.toggleClass("display", "none");
+          }
+        }
+      }
+
+    });
+</script>

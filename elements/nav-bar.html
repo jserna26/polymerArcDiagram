@@ -1,0 +1,25 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="nav-pill.html">
+
+<dom-module id="nav-bar">
+  <template>
+    <h1>
+      <ul class="nav nav-pills">
+        <nav-pill _setDisplay="false">Tests</nav-pill>
+        <nav-pill _setDisplay="false">Saved Reports</nav-pill>
+        <nav-pill _setDisplay="true">Results</nav-pill>
+      </ul>
+      WebMethods Unit Testing
+    </h1>
+  </template>
+
+  <script>
+    //Register new element
+    Polymer({
+      is: "nav-bar",
+      ready: function(){
+        this.textContext = "test";
+      }
+    });
+  </script>
+</dom-module>

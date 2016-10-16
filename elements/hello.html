@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="hello-world" attributes="name">
+  <template>
+    <style>
+      ul, h1 {
+        font-family: sans-serif;
+        font-size: 2em;
+        font-weight: bold;
+      }
+    </style>
+    <ul>
+      <template is="dom-repeat" items="{{names}}">
+        <li>Hello {{item.name}}</li>
+      </template>
+    </ul>
+    <h1>Hello {{name1}}<h1>
+    <input type="text" value="{{name1::input}}">
+    <p id="atest">{{name1}}</p>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: "hello-world",
+    properties: {
+      name: {
+        type: String,
+      }
+    },
+    ready: function(){
+      this.names = [{name:"World"},{name:"Jon"},{name:"Roy"}];
+      this.name1 = "Test";
+      //this.$.ajax.generateRequest();
+    }
+  })
+</script>

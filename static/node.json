@@ -1,0 +1,31 @@
+applications: [
+{
+  "application": "Proficy",
+  "integrations": [
+    {"target": "Kronos", "integration_id": "1492"},
+    {"target": "Oracle EBS", "integration_id": "1455"},
+    {"target": "Oracle EBS", "integration_id": "1279"},
+    {"target": "Oracle EBS", "integration_id": "1"},
+  ]
+},
+{
+  "application": "Kronos",
+  "integrations": [
+    {"target": "Oracle EBS", "integration_id": "1238, 1239"},
+    {"target": "Proficy", "integration_id": "1493"},
+    {"target": "Oracle EBS", "integration_id": "1279"},
+    {"target": "Oracle EBS", "integration_id": "1"},
+  ]
+},
+{
+  "application": "Oracle EBS",
+  "integrations": [
+    {"target": "Kronos", "integration_id": "1240"},
+    {"target": "Proficy", "integration_id": "1240"},
+    {"target": "Proficy", "integration_id": "1491"},
+    {"target": "Proficy", "integration_id": "4236"},
+    {"target": "TipQA", "integration_id": "1240"},
+    {"target": "TipQA", "integration_id": "1240"},
+  ]
+}
+]

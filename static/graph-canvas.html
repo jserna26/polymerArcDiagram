@@ -1,0 +1,105 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="graph-elements.html">
+<script src="../bower_components/cytoscape/dist/cytoscape.min.js"></script>
+
+<dom-module id="graph-canvas" attributes="node-shape modelUrl">
+  <template>
+    <iron-ajax id="retrieveNodesFromDataStore"
+      url="{{modelUrl}}"
+      handle-as="json"
+      on-response="handleResponse"></iron-ajax>
+    <style>
+      #cy {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          display: block;
+        }
+    </style>
+    <!-- Make an ajax call to getAppList api -->
+    <graph-elements>/<graph-elements>
+    <!-- Display canvas -->
+    <div id="cy"></div>
+  </template>
+</dom-module>
+
+<script>
+ Polymer({
+   is: "graph-canvas",
+   ready: function(){
+     initialiseCanvas()
+
+
+     if
+   },
+   initialiseCanvas: function(){
+     var cy = cytoscape({
+       container: document.getElementById('cy'),
+       /*elements: [
+          { data: { id: 'Proficy' } },
+          { data: { id: 'Kronos' } },
+          { data: { id: '1492', source: 'Proficy', target: 'Kronos'}}
+       ],*/
+       style: [
+          {
+            selector: 'node',
+            style: {
+                shape: '{{node-shape}}',
+                'background-color': 'LightBlue',
+                label: 'data(id)'
+            }
+          },
+          {
+            selector: 'edge',
+            style: {
+              'target-arrow-shape': 'triangle',
+              label: 'data(id)',
+            }
+          }
+     ],
+       layout: {
+          name: 'grid'
+       },
+       //Initial viewport state
+       zoom: 1,
+       pan: {x:0, y:0},
+       //Interaction options
+       minZoom: 1e-50,
+       maxZoom: 1e50,
+       zoomingEnabled: true,
+       userZoomingEnabled: true,
+       panningEnabled: true,
+       userPanningEnabled: true,
+       boxSelectionEnabled: false,
+       selectionType: 'single',
+       touchTapThreshold: 8,
+       desktopTapThreshold: 4,
+       autolock: false,
+       autoungrabify: false,
+       autounselectify: false,
+       // rendering options:
+       headless: false,
+       styleEnabled: true,
+       hideEdgesOnViewport: false,
+       hideLabelsOnViewport: false,
+       textureOnViewport: false,
+       motionBlur: false,
+       motionBlurOpacity: 0.2,
+       wheelSensitivity: 1,
+       pixelRatio: 'auto'
+     });
+   }),
+   //Func to pull nodes from datastore if defined as a property
+   retriveFromDataStore: function(){
+     if (this.$.modelUrl != ""){
+       this.$.retrieveNodesFromDataStore.generateRequest()
+     } else return
+   },
+   addNodes: function(nodeList){
+
+   }
+ })
+
+</script>
